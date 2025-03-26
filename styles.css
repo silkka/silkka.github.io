@@ -127,12 +127,14 @@ main {
 
 /* Blog post styles */
 .blog-post-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
 .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
     background: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
