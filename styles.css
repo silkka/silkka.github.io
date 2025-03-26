@@ -11,7 +11,7 @@
 }
 
 :root[data-theme="dark"] {
-    --primary-blue: #6B97DA;
+    --primary-blue: #89B4FF;
     --light-blue: #1E2A3B;
     --background: #1A1A1A;
     --text-color: #FFFFFF;
@@ -195,7 +195,13 @@ main {
     color: var(--white);
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 0.9rem
+}
+
+:root[data-theme="dark"] .date {
+    background-color: #a8c6ff;
+    color: #000000;
+    ;
 }
 
 .post-card h3 {
@@ -220,11 +226,21 @@ main {
     text-decoration: none;
     border-radius: 4px;
     font-weight: 500;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s
+}
+
+:root[data-theme="dark"] .read-more {
+    background-color: #a8c6ff;
+    color: #000000;
+    ;
 }
 
 .read-more:hover {
     background-color: #1a4580;
+}
+
+:root[data-theme="dark"] .read-more:hover {
+    background-color: #a8c6ff;
 }
 
 /* Accessibility improvements */
