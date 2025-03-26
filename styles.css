@@ -174,6 +174,28 @@ main {
     height: 100%;
 }
 
+.blog-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.blog-page .post-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.blog-page .post-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.blog-page .featured-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
 .post-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
