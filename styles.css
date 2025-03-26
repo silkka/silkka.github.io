@@ -11,10 +11,11 @@
 }
 
 :root[data-theme="dark"] {
-    --primary-blue: #4B77BA;
+    --primary-blue: #6B97DA;
     --light-blue: #1E2A3B;
     --background: #1A1A1A;
-    --text-color: #E0E0E0;
+    --text-color: #FFFFFF;
+    --dark-text: #E0E0E0;
     --card-background: #2D2D2D;
     --card-border: #404040;
 }
@@ -89,7 +90,7 @@ body {
 }
 
 .nav-links a {
-    color: var(--dark-text);
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
@@ -205,8 +206,9 @@ main {
 
 .post-card p {
     padding: 0 1rem;
-    color: var(--dark-text);
+    color: var(--text-color);
     margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .read-more {
