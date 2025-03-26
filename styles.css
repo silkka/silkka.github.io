@@ -169,6 +169,9 @@ main {
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .post-card:hover {
@@ -213,8 +216,8 @@ main {
 .post-card p {
     padding: 0 1rem;
     color: var(--text-color);
-    margin-bottom: 1rem;
     line-height: 1.6;
+    flex: 1;
 }
 
 .read-more {
@@ -226,7 +229,8 @@ main {
     text-decoration: none;
     border-radius: 4px;
     font-weight: 500;
-    transition: background-color 0.2s
+    transition: background-color 0.2s;
+    width: fit-content;
 }
 
 :root[data-theme="dark"] .read-more {
