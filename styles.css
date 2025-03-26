@@ -37,7 +37,7 @@ body {
     padding: 1.5rem 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -56,8 +56,8 @@ body {
 .nav-links {
     display: flex;
     gap: 2rem;
-    padding-left: 2rem;
-    align-items: center;
+    align-items: left;
+    margin: 0 auto;
 }
 
 .theme-toggle {
@@ -104,14 +104,23 @@ body {
         flex-direction: column;
         text-align: center;
         padding: 1rem;
+        gap: 1rem;
     }
 
     .nav-brand {
-        margin-bottom: 1rem;
+        width: 100%;
+        text-align: center;
     }
 
     .nav-links {
-        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+        margin: 0;
+        gap: 1.5rem;
+    }
+
+    .theme-toggle {
+        margin: 0 auto;
     }
 }
 
