@@ -125,6 +125,59 @@ main {
     }
 }
 
+/* Blog post styles */
+.blog-post-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.blog-post {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.blog-post h1 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.blog-post .post-meta {
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+}
+
+.blog-post .featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+.blog-post .post-content {
+    line-height: 1.6;
+}
+
+.blog-post .post-content h2 {
+    color: var(--primary-blue);
+    margin: 2rem 0 1rem;
+}
+
+.blog-post .post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-post .post-content ul {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.blog-post .post-content li {
+    margin-bottom: 0.5rem;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .hero h1 {

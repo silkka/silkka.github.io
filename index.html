@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Technology Blog</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 
 <body>
     <header class="hero">
-        <h1>Antti Page</h1>
+        <h1>Placeholder Title</h1>
         <p class="subtitle">Something about content</p>
     </header>
 
@@ -25,7 +26,8 @@
                     </div>
                     <h3>GETTING STARTED WITH VUE.JS AND PRIMEVUE</h3>
                     <p>Learn how to build modern web applications using Vue.js and PrimeVue components. This...</p>
-                    <a href="#" class="read-more">READ MORE</a>
+                    <a href="/posts/vue-primevue.html" class="read-more" hx-get="/posts/vue-primevue.html"
+                        hx-target=".latest-posts" hx-push-url="true" hx-swap="outerHTML">READ MORE</a>
                 </article>
 
                 <article class="post-card">
@@ -36,7 +38,9 @@
                     <h3>THE FUTURE OF WEB DEVELOPMENT</h3>
                     <p>Explore the latest trends in web development, from AI integration to new frameworks and tools
                         th...</p>
-                    <a href="#" class="read-more">READ MORE</a>
+                    <a href="/posts/web-development-future.html" class="read-more"
+                        hx-get="/posts/web-development-future.html" hx-target=".latest-posts" hx-push-url="true"
+                        hx-swap="outerHTML">READ MORE</a>
                 </article>
 
                 <article class="post-card">
@@ -47,7 +51,9 @@
                     <h3>BUILDING RESPONSIVE UIS WITH PRIMEFLEX</h3>
                     <p>Discover how to create beautiful, responsive user interfaces using PrimeFlex, a utility-first
                         CSS...</p>
-                    <a href="#" class="read-more">READ MORE</a>
+                    <a href="/posts/primeflex-responsive-ui.html" class="read-more"
+                        hx-get="/posts/primeflex-responsive-ui.html" hx-target=".latest-posts" hx-push-url="true"
+                        hx-swap="outerHTML">READ MORE</a>
                 </article>
             </div>
         </section>
