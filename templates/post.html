@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Post Title] - [Topic] - Antti's Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="../js/theme.js"></script>
+</head>
+
+<body>
+    <div hx-get="/components/navbar.html" hx-trigger="load" hx-swap="outerHTML"></div>
+
+    <div class="blog-page">
+        <div class="blog-post">
+            <h1>[Post Title]</h1>
+            <date class="post-content">[Date]</date>
+
+            <img src="[Image URL]" alt="[Post Title] Screenshot" class="featured-image">
+            <div class="post-content">
+                <h2>Description</h2>
+                <p>[Description Content]</p>
+
+                <h2>[Topic]</h2>
+                <p>[Topic Details]</p>
+
+                <!-- Optional CTA Section -->
+                <div class="cta-section">
+                    <h2>External Links</h2>
+                    <p>[External Links Description]</p>
+                    <a href="[External Link URL]" class="cta-button" target="_blank" rel="noopener noreferrer">[External
+                        Link Text]</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
