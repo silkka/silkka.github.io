@@ -2,7 +2,6 @@
 
 - Description:
     - [A brief description of your post content]
-    - [Additional details or key points]
 
 - Topic: [Main topic/category of the post]
 
