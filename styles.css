@@ -193,6 +193,8 @@ main {
 .blog-page .featured-image {
     width: 100%;
     height: auto;
+    max-height: 600px;
+    object-fit: cover;
     margin-bottom: 2rem;
 }
 
@@ -204,6 +206,17 @@ main {
 .post-image {
     position: relative;
     height: 200px;
+}
+
+.highlighted-image {
+    position: relative;
+    height: 400px;
+}
+
+.highlighted-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .post-image img {
