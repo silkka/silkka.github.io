@@ -7,6 +7,7 @@
     --text-color: var(--dark-text);
     --card-background: var(--white);
     --card-border: #e0e0e0;
+    --visited-link: #1A4580;
     transition: all 0.3s ease;
 }
 
@@ -18,6 +19,7 @@
     --dark-text: #E0E0E0;
     --card-background: #2D2D2D;
     --card-border: #404040;
+    --visited-link: #FFFFFF;
 }
 
 * {
@@ -94,6 +96,10 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
+}
+
+a:visited {
+    color: var(--visited-link);
 }
 
 .nav-links a:hover {
