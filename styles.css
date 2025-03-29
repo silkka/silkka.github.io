@@ -157,6 +157,12 @@ main {
     font-size: 1.8rem;
 }
 
+.featured-post h2 {
+    color: var(--primary-blue);
+    margin: 2rem 0;
+    font-size: 1.8rem;
+}
+
 .posts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
