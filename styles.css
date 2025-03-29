@@ -157,10 +157,10 @@ main {
     font-size: 1.8rem;
 }
 
-.featured-post h2 {
+.featured-post h1 {
     color: var(--primary-blue);
     margin: 2rem 0;
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 
 .posts-grid {
