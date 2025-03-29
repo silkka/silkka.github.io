@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Development - Antti's Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body>
+    <div hx-get="/components/navbar.html" hx-trigger="load" hx-swap="outerHTML"></div>
+
+    <main class="content">
+        <h1>GAME DEVELOPMENT</h1>
+        <p class="section-description">Exploring game development techniques, tools, and best practices for creating
+            engaging gaming experiences.</p>
+
+        <div class="post-grid">
+            <article class="post-card">
+                <div class="post-image">
+                    <img src="https://placehold.co/600x400" alt="Unity3D development illustration">
+                    <span class="date">Mar 22</span>
+                </div>
+                <h3>GETTING STARTED WITH UNITY3D GAME DEVELOPMENT</h3>
+                <p>Unity3D is one of the most popular game development platforms, offering a powerful yet accessible
+                    environment for creating games...</p>
+                <a href="/posts/unity3d-game-development.html" class="read-more"
+                    hx-get="/posts/unity3d-game-development.html" hx-target="body" hx-push-url="true">READ MORE</a>
+            </article>
+        </div>
+    </main>
+</body>
+
+</html>

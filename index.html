@@ -13,8 +13,43 @@
     <div hx-get="/components/navbar.html" hx-trigger="load" hx-swap="outerHTML"></div>
 
     <main>
+        <section class="featured-post">
+            <h2>Latest Update</h2>
+            <article class="post-card featured">
+                <div class="post-image">
+                    <img src="https://placehold.co/600x400" alt="Vue.js and PrimeVue tutorial illustration">
+                    <span class="date">Mar 21</span>
+                </div>
+                <h3>GETTING STARTED WITH VUE.JS AND PRIMEVUE</h3>
+                <p>Learn how to build modern web applications using Vue.js and PrimeVue components. This...</p>
+                <a href="/posts/vue-primevue.html" class="read-more" hx-get="/posts/vue-primevue.html" hx-target="body"
+                    hx-push-url="true" hx-swap="innerHTML">READ MORE</a>
+            </article>
+        </section>
+
+        <section class="category-posts">
+            <h2>Quality Assurance</h2>
+            <div class="posts-grid">
+                <!-- QA posts will be added here -->
+            </div>
+        </section>
+
+        <section class="category-posts">
+            <h2>Game Development</h2>
+            <div class="posts-grid">
+                <!-- Game dev posts will be added here -->
+            </div>
+        </section>
+
+        <section class="category-posts">
+            <h2>Maps</h2>
+            <div class="posts-grid">
+                <!-- Map posts will be added here -->
+            </div>
+        </section>
+
         <section class="latest-posts">
-            <h2>Latest Posts</h2>
+            <h2>Recent Posts</h2>
             <div class="posts-grid">
                 <article class="post-card">
                     <div class="post-image">
