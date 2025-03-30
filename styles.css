@@ -7,7 +7,7 @@
     --text-color: var(--dark-text);
     --card-background: var(--white);
     --card-border: #e0e0e0;
-    --visited-link: #1A4580;
+    --visited-link: #FFFFFF;
     transition: all 0.3s ease;
 }
 
