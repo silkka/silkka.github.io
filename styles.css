@@ -374,3 +374,9 @@ main {
         grid-template-columns: 1fr;
     }
 }
+
+.view-all-posts {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+}
