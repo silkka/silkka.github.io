@@ -260,6 +260,7 @@ main {
     ;
 }
 
+.post-card h2,
 .post-card h3 {
     color: var(--primary-blue);
     padding: 1rem;
