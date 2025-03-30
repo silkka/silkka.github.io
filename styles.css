@@ -283,7 +283,10 @@ main {
 :root[data-theme="dark"] .read-more {
     background-color: #a8c6ff;
     color: #000000;
-    ;
+}
+
+.read-more a:visited {
+    color: var(--white);
 }
 
 .read-more:hover {
