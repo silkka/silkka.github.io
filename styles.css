@@ -285,7 +285,7 @@ main {
     color: #000000;
 }
 
-.read-more a:visited {
+.read-more:visited {
     color: var(--white);
 }
 
