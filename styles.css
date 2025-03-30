@@ -294,6 +294,16 @@ main {
     background-color: #a8c6ff;
 }
 
+.read-more:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--background);
+}
+
+:root[data-theme="dark"] .read-more:focus-visible {
+    outline-color: var(--white);
+}
+
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
     .post-card {
