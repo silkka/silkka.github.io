@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Valley - Silkka's Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/components/theme.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body>
+    <div hx-get="/components/navbar.html" hx-trigger="load" hx-swap="outerHTML"></div>
+
+    <div class="blog-page">
+        <div class="blog-post">
+            <h1>Death Valley</h1>
+            <date class="post-content">30 Dec, 2021</date>
+
+            <img src="https://images.steamusercontent.com/ugc/1868430228821029553/B405EAD8C28CA1367E63F7E8CA3E9BD228D86B40/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
+                alt="Death Valley Screenshot" class="featured-image">
+            <div class="post-content">
+                <h2>Description</h2>
+                <p>Simple 4 lane map with focus on the centre of the map</p>
+
+                <div class="cta-section">
+                    <h2>External Links</h2>
+                    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2701057044" class="cta-button"
+                        target="_blank" rel="noopener noreferrer">View on Steam Workshop</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
