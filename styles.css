@@ -400,3 +400,37 @@ main {
     margin: 2rem 0;
     padding: 1rem;
 }
+
+.cta-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #1A4580;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.cta-button:hover {
+    background-color: #143966;
+    color: #FFFFFF;
+}
+
+.cta-button:visited {
+    color: #FFFFFF;
+}
+
+:root[data-theme="dark"] .cta-button {
+    background-color: #A8C6FF;
+    color: #000000;
+}
+
+:root[data-theme="dark"] .cta-button:hover {
+    background-color: #89B4FF;
+    color: #000000;
+}
+
+:root[data-theme="dark"] .cta-button:visited {
+    color: #000000;
+}
