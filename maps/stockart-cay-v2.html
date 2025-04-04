@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stockart Cay v2 - Silkka's Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/components/theme.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body>
+    <div hx-get="/components/navbar.html" hx-trigger="load" hx-swap="outerHTML"></div>
+
+    <div class="blog-page">
+        <div class="blog-post">
+            <h1>Stockart Cay v2</h1>
+            <date class="post-content">25 Aug, 2024</date>
+
+            <img src="https://images.steamusercontent.com/ugc/2402194226083593556/B6C83728FDAB81A7A008C020D9DE9F9AB7C7E1A6/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
+                alt="Stockart Cay v2 Screenshot" class="featured-image">
+            <div class="post-content">
+                <h2>Description</h2>
+                <p>Version 2 of the classic Stockart Cay map with improved main lane.</p>
+
+                <div class="cta-section">
+                    <h2>External Links</h2>
+                    <ul>
+                        <li>
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3317299193"
+                                class="cta-button" target="_blank" rel="noopener noreferrer">Steam Workshop</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/silkka/stockart-cay-v2" class="cta-button" target="_blank"
+                                rel="noopener noreferrer">GitHub Repository</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
