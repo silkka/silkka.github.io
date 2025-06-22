@@ -1,0 +1,33 @@
+{
+    "site_title": "Silkka's Blog",
+    "site_description": "Technology and gaming blog",
+    "categories": {
+        "maps": {
+            "name": "Maps",
+            "description": "Game maps and mods"
+        },
+        "games": {
+            "name": "Games",
+            "description": "Game development and reviews"
+        },
+        "posts": {
+            "name": "Posts",
+            "description": "General blog posts"
+        }
+    },
+    "templates": {
+        "post_template": "templates/post.html",
+        "index_template": "templates/index.html",
+        "posts_index_template": "templates/posts-index.html"
+    },
+    "output": {
+        "posts_per_page": 10,
+        "recent_posts_count": 3,
+        "date_format": "Jan 2, 2006"
+    },
+    "features": {
+        "generate_json": true,
+        "generate_rss": false,
+        "generate_sitemap": true
+    }
+}
