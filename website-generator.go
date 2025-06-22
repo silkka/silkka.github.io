@@ -33,6 +33,27 @@ type WebsiteData struct {
 	AllPosts     []Post `json:"all_posts"`
 }
 
+// LinkInfo holds information about a link for display
+type LinkInfo struct {
+	URL  string
+	Text string
+}
+
+// getLinkText determines the appropriate button text for a link
+func getLinkText(url string) string {
+	url = strings.ToLower(url)
+	
+	if strings.Contains(url, "steamcommunity.com") || strings.Contains(url, "steampowered.com") {
+		return "View in Steam"
+	}
+	
+	if strings.Contains(url, "github.com") {
+		return "View on GitHub"
+	}
+	
+	return "View Resource"
+}
+
 // Templates for HTML generation
 const postTemplate = `<!DOCTYPE html>
 <html lang="en">
@@ -64,7 +85,7 @@ const postTemplate = `<!DOCTYPE html>
                 <div class="cta-section">
                     <h2>External Links</h2>
                     {{range .ExternalLinks}}
-                    <a href="{{.}}" class="cta-button" target="_blank" rel="noopener noreferrer">View Resource</a>
+                    <a href="{{.}}" class="cta-button" target="_blank" rel="noopener noreferrer">{{getLinkText .}}</a>
                     {{end}}
                 </div>
                 {{end}}
@@ -222,7 +243,10 @@ func loadPostsFromJSON(inputFile string) ([]Post, error) {
 
 // generatePostHTML generates the HTML for a single post
 func generatePostHTML(post Post, outputDir string) error {
-	tmpl, err := template.New("post").Parse(postTemplate)
+	// Create template with custom functions
+	tmpl, err := template.New("post").Funcs(template.FuncMap{
+		"getLinkText": getLinkText,
+	}).Parse(postTemplate)
 	if err != nil {
 		return err
 	}
