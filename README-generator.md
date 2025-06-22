@@ -1,11 +1,11 @@
 # Website Generator
 
-A Go program that automates the generation of your static website from markdown files or JSON data. This tool follows the workflow specified in `AI-Workflow.md` and generates all necessary HTML files.
+A Go program that automates the generation of your static website from JSON data. This tool follows the workflow specified in `AI-Workflow.md` and generates all necessary HTML files.
 
 ## Features
 
-- **Markdown to HTML**: Converts markdown files to individual blog post HTML pages
-- **JSON Support**: Can work with JSON files for easier content management
+- **JSON-based Content Management**: All content is managed through `posts.json`
+- **Interactive CLI Tool**: Add new posts easily with the `add-post.go` tool
 - **Automatic Post Management**: 
   - Latest post becomes featured post
   - Next 3 posts become recent posts
@@ -16,65 +16,50 @@ A Go program that automates the generation of your static website from markdown 
 
 ## Quick Start
 
-### 1. Generate from Markdown Files
+### 1. Generate Website
 
 ```bash
-go run website-generator.go
+./generate.sh generate
+# or
+go run website-generator.go posts.json
 ```
 
 This will:
-- Read all `.md` files from the `md/` directory
+- Read posts from `posts.json`
 - Generate individual HTML files in appropriate category directories
 - Update `index.html` with featured and recent posts
 - Update `posts/index.html` with all posts
-- Create `posts.json` for easier future editing
 
-### 2. Generate from JSON File
+### 2. Add New Post
 
 ```bash
-go run website-generator.go --json posts.json
+./generate.sh add
+# or
+go run add-post.go
 ```
 
-This allows you to edit the JSON file directly and regenerate the website.
+This will:
+- Start an interactive session to collect post information
+- Add the new post to the front of `posts.json` (making it featured)
+- Automatically generate slug and category
 
-## Input Formats
-
-### Markdown Format
-
-Create markdown files in the `md/` directory following this structure:
-
-```markdown
-# Post Title
-
-- Description:
-    - A brief description of your post content
-
-- Topic: Main topic/category of the post
-
-- Date: Use format: Feb 24, 2021
-
-- Image for the post: URL to featured image
-
-- External links: 
-    - https://example.com/link1
-    - https://example.com/link2
-```
+## Input Format
 
 ### JSON Format
 
-The program generates a `posts.json` file that you can edit directly:
+The program uses a `posts.json` file with this structure:
 
 ```json
 [
   {
     "title": "Post Title",
     "description": "A brief description of your post content",
-    "topic": "Main topic/category",
-    "date": "Feb 24, 2021",
+    "topic": "Maps",
+    "date": "Dec 15, 2024",
     "image_url": "https://example.com/image.jpg",
     "external_links": [
-      "https://example.com/link1",
-      "https://example.com/link2"
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=1234567890",
+      "https://github.com/silkka/example-map"
     ],
     "slug": "post-title",
     "category": "maps",
@@ -82,6 +67,17 @@ The program generates a `posts.json` file that you can edit directly:
   }
 ]
 ```
+
+### Interactive CLI Tool
+
+The `add-post.go` tool prompts for:
+
+- **Post title** (required)
+- **Description** (required)
+- **Topic** (Maps/Games/Posts, defaults to Maps)
+- **Date** (defaults to current date)
+- **Image URL** (required)
+- **External links** (Steam Workshop, GitHub, etc.)
 
 ## Configuration
 
@@ -120,30 +116,45 @@ After generation, your website will have:
 │   └── post-slug-2.html
 ├── games/
 │   └── game-post.html
-├── posts.json              # Generated for easy editing
-└── config.json             # Configuration file
+├── posts.json              # Your content data
+├── config.json             # Configuration file
+├── website-generator.go    # Main generator
+└── add-post.go            # CLI tool for adding posts
 ```
 
 ## Adding New Content
 
-### Method 1: Markdown Files
-1. Create a new `.md` file in the `md/` directory
-2. Follow the markdown format above
-3. Run `go run website-generator.go`
+### Method 1: Interactive CLI (Recommended)
+```bash
+./generate.sh add
+```
+Follow the prompts to add your new post.
 
-### Method 2: JSON Editing
-1. Edit `posts.json` to add your new post
-2. Run `go run website-generator.go --json posts.json`
+### Method 2: Direct JSON Editing
+1. Edit `posts.json` to add your new post at the top
+2. Run `./generate.sh generate`
 
-### Method 3: Direct JSON Creation
-1. Create a new JSON file with your posts
-2. Run `go run website-generator.go --json your-file.json`
+### Method 3: Custom JSON File
+1. Create your own JSON file with posts
+2. Run `go run website-generator.go your-file.json`
+
+## Typical Workflow
+
+```bash
+# 1. Add a new post
+./generate.sh add
+
+# 2. Generate the website
+./generate.sh generate
+
+# 3. Repeat as needed
+```
 
 ## Benefits
 
 - **No Manual HTML Editing**: All HTML is generated automatically
-- **Consistent Structure**: All posts follow the same template
-- **Easy Content Management**: JSON format is easier to edit than HTML
+- **Easy Content Management**: Simple JSON format
+- **Interactive Post Creation**: User-friendly CLI tool
 - **Automatic Updates**: Featured/recent posts update automatically
 - **Category Organization**: Posts are automatically organized by category
 - **Accessibility**: Maintains WCAG 2.1 AA compliance
@@ -153,13 +164,14 @@ After generation, your website will have:
 
 ### Common Issues
 
-1. **Date Parsing Errors**: Ensure dates follow the format "Feb 24, 2021"
+1. **Date Parsing Errors**: Ensure dates follow the format "Dec 15, 2024"
 2. **Missing Images**: Check that image URLs are accessible
-3. **Category Issues**: Verify category names match those in `config.json`
+3. **Category Issues**: Verify topic names (Maps/Games/Posts)
+4. **JSON Syntax**: Ensure `posts.json` has valid JSON syntax
 
 ### Debug Mode
 
-Add debug logging by modifying the Go code or check the console output for parsing errors.
+Check the console output for parsing errors or validation issues.
 
 ## Future Enhancements
 
@@ -168,4 +180,6 @@ Add debug logging by modifying the Go code or check the console output for parsi
 - Image optimization
 - SEO meta tags
 - Multiple language support
-- Custom templates per category 
+- Custom templates per category
+- Post editing CLI tool
+- Post deletion CLI tool 

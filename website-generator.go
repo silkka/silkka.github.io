@@ -164,60 +164,6 @@ const postsIndexTemplate = `<!DOCTYPE html>
 
 </html>`
 
-// parseMarkdownFile reads a markdown file and converts it to a Post struct
-func parseMarkdownFile(filepath string) (*Post, error) {
-	content, err := ioutil.ReadFile(filepath)
-	if err != nil {
-		return nil, err
-	}
-
-	lines := strings.Split(string(content), "\n")
-	post := &Post{}
-	
-	for i, line := range lines {
-		line = strings.TrimSpace(line)
-		
-		if strings.HasPrefix(line, "# ") {
-			post.Title = strings.TrimPrefix(line, "# ")
-		} else if strings.HasPrefix(line, "- Description:") {
-			// Get description from next indented line
-			if i+1 < len(lines) {
-				descLine := strings.TrimSpace(lines[i+1])
-				if strings.HasPrefix(descLine, "- ") {
-					post.Description = strings.TrimPrefix(descLine, "- ")
-				}
-			}
-		} else if strings.HasPrefix(line, "- Topic:") {
-			post.Topic = strings.TrimSpace(strings.TrimPrefix(line, "- Topic:"))
-		} else if strings.HasPrefix(line, "- Date:") {
-			post.Date = strings.TrimSpace(strings.TrimPrefix(line, "- Date:"))
-		} else if strings.HasPrefix(line, "- Image for the post:") {
-			post.ImageURL = strings.TrimSpace(strings.TrimPrefix(line, "- Image for the post:"))
-		} else if strings.HasPrefix(line, "- External links:") {
-			// Collect all external links
-			for j := i + 1; j < len(lines); j++ {
-				linkLine := strings.TrimSpace(lines[j])
-				if strings.HasPrefix(linkLine, "- ") {
-					link := strings.TrimPrefix(linkLine, "- ")
-					if strings.HasPrefix(link, "http") {
-						post.ExternalLinks = append(post.ExternalLinks, link)
-					}
-				} else if linkLine == "" || !strings.HasPrefix(linkLine, "    ") {
-					break
-				}
-			}
-		}
-	}
-
-	// Generate slug from title
-	post.Slug = generateSlug(post.Title)
-	
-	// Determine category based on topic or filename
-	post.Category = determineCategory(post.Topic, filepath)
-	
-	return post, nil
-}
-
 // generateSlug creates a URL-friendly slug from a title
 func generateSlug(title string) string {
 	slug := strings.ToLower(title)
@@ -229,11 +175,18 @@ func generateSlug(title string) string {
 	return slug
 }
 
-// determineCategory determines the category based on topic or filename
-func determineCategory(topic, filepath string) string {
-	// Default to maps category for now
-	// This could be enhanced to read from a config file or infer from content
-	return "maps"
+// determineCategory determines the category based on topic
+func determineCategory(topic string) string {
+	switch strings.ToLower(topic) {
+	case "maps", "map":
+		return "maps"
+	case "games", "game":
+		return "games"
+	case "posts", "post":
+		return "posts"
+	default:
+		return "maps" // default category
+	}
 }
 
 // parseDate parses the date string and returns a time.Time
@@ -255,43 +208,16 @@ func parseDate(dateStr string) (time.Time, error) {
 	return time.Time{}, fmt.Errorf("unable to parse date: %s", dateStr)
 }
 
-// loadAllPosts reads all markdown files and converts them to Post structs
-func loadAllPosts(mdDir string) ([]Post, error) {
-	files, err := ioutil.ReadDir(mdDir)
+// loadPostsFromJSON loads posts from JSON file
+func loadPostsFromJSON(inputFile string) ([]Post, error) {
+	data, err := ioutil.ReadFile(inputFile)
 	if err != nil {
 		return nil, err
 	}
 
 	var posts []Post
-	
-	for _, file := range files {
-		if file.IsDir() || !strings.HasSuffix(file.Name(), ".md") || file.Name() == "template.md" {
-			continue
-		}
-
-		filepath := filepath.Join(mdDir, file.Name())
-		post, err := parseMarkdownFile(filepath)
-		if err != nil {
-			log.Printf("Error parsing %s: %v", filepath, err)
-			continue
-		}
-
-		posts = append(posts, *post)
-	}
-
-	// Sort posts by date (newest first)
-	sort.Slice(posts, func(i, j int) bool {
-		dateI, errI := parseDate(posts[i].Date)
-		dateJ, errJ := parseDate(posts[j].Date)
-		
-		if errI != nil || errJ != nil {
-			return false
-		}
-		
-		return dateI.After(dateJ)
-	})
-
-	return posts, nil
+	err = json.Unmarshal(data, &posts)
+	return posts, err
 }
 
 // generatePostHTML generates the HTML for a single post
@@ -384,87 +310,45 @@ func updateWebsiteData(posts []Post) WebsiteData {
 	}
 }
 
-// savePostsAsJSON saves all posts as JSON for easier editing
-func savePostsAsJSON(posts []Post, outputDir string) error {
+// savePostsAsJSON saves all posts as JSON
+func savePostsAsJSON(posts []Post, outputFile string) error {
 	data, err := json.MarshalIndent(posts, "", "  ")
 	if err != nil {
 		return err
 	}
 
-	outputFile := filepath.Join(outputDir, "posts.json")
 	return ioutil.WriteFile(outputFile, data, 0644)
 }
 
-// loadPostsFromJSON loads posts from JSON file
-func loadPostsFromJSON(inputFile string) ([]Post, error) {
-	data, err := ioutil.ReadFile(inputFile)
-	if err != nil {
-		return nil, err
-	}
-
-	var posts []Post
-	err = json.Unmarshal(data, &posts)
-	return posts, err
-}
-
 func main() {
-	mdDir := "md"
 	outputDir := "."
+	postsFile := "posts.json"
 	
-	// Check if we should use JSON input instead of markdown
-	if len(os.Args) > 1 && os.Args[1] == "--json" {
-		if len(os.Args) < 3 {
-			log.Fatal("Please provide JSON file path: --json posts.json")
-		}
-		
-		posts, err := loadPostsFromJSON(os.Args[2])
-		if err != nil {
-			log.Fatal("Error loading posts from JSON:", err)
-		}
-		
-		// Sort posts by date
-		sort.Slice(posts, func(i, j int) bool {
-			dateI, errI := parseDate(posts[i].Date)
-			dateJ, errJ := parseDate(posts[j].Date)
-			
-			if errI != nil || errJ != nil {
-				return false
-			}
-			
-			return dateI.After(dateJ)
-		})
-		
-		websiteData := updateWebsiteData(posts)
-		
-		// Generate all HTML files
-		for _, post := range posts {
-			if err := generatePostHTML(post, outputDir); err != nil {
-				log.Printf("Error generating HTML for %s: %v", post.Title, err)
-			}
-		}
-		
-		if err := generateIndexHTML(websiteData, outputDir); err != nil {
-			log.Fatal("Error generating index.html:", err)
-		}
-		
-		if err := generatePostsIndexHTML(websiteData, outputDir); err != nil {
-			log.Fatal("Error generating posts/index.html:", err)
-		}
-		
-		fmt.Println("Website generated successfully from JSON!")
-		return
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: go run website-generator.go <posts.json>")
+		fmt.Println("Example: go run website-generator.go posts.json")
+		os.Exit(1)
 	}
-
-	// Load posts from markdown files
-	posts, err := loadAllPosts(mdDir)
+	
+	postsFile = os.Args[1]
+	
+	// Load posts from JSON file
+	posts, err := loadPostsFromJSON(postsFile)
 	if err != nil {
-		log.Fatal("Error loading posts:", err)
+		log.Fatal("Error loading posts from JSON:", err)
 	}
 
-	// Save posts as JSON for easier editing
-	if err := savePostsAsJSON(posts, outputDir); err != nil {
-		log.Printf("Warning: Could not save posts.json: %v", err)
-	}
+	// Sort posts by date (newest first)
+	sort.Slice(posts, func(i, j int) bool {
+		dateI, errI := parseDate(posts[i].Date)
+		dateJ, errJ := parseDate(posts[j].Date)
+		
+		if errI != nil || errJ != nil {
+			return false
+		}
+		
+		return dateI.After(dateJ)
+	})
 
 	// Update website data according to workflow
 	websiteData := updateWebsiteData(posts)
@@ -490,5 +374,4 @@ func main() {
 	fmt.Printf("- Featured post: %s\n", websiteData.FeaturedPost.Title)
 	fmt.Printf("- Recent posts: %d\n", len(websiteData.RecentPosts))
 	fmt.Printf("- Total posts: %d\n", len(websiteData.AllPosts))
-	fmt.Printf("- Posts saved to posts.json for easy editing\n")
 } 

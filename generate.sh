@@ -1,59 +1,46 @@
 #!/bin/bash
 
 # Website Generator Script
-# Usage: ./generate.sh [markdown|json|watch]
+# Usage: ./generate.sh [generate|add|help]
 
 set -e
 
 echo "🌐 Website Generator"
 echo "=================="
 
-case "${1:-markdown}" in
-    "markdown")
-        echo "📝 Generating from markdown files..."
-        go run website-generator.go
-        echo "✅ Website generated from markdown files!"
-        ;;
-    "json")
-        echo "📄 Generating from JSON file..."
+case "${1:-generate}" in
+    "generate")
+        echo "📄 Generating website from posts.json..."
         if [ -f "posts.json" ]; then
-            go run website-generator.go --json posts.json
-            echo "✅ Website generated from posts.json!"
+            go run website-generator.go posts.json
+            echo "✅ Website generated successfully!"
         else
-            echo "❌ posts.json not found. Run with 'markdown' first to generate it."
+            echo "❌ posts.json not found. Use './generate.sh add' to create your first post."
             exit 1
         fi
         ;;
-    "watch")
-        echo "👀 Watching for changes in md/ directory..."
-        echo "Press Ctrl+C to stop watching"
-        
-        # Check if fswatch is available
-        if command -v fswatch >/dev/null 2>&1; then
-            fswatch -o md/ | while read f; do
-                echo "🔄 Change detected, regenerating..."
-                go run website-generator.go
-                echo "✅ Website updated!"
-            done
-        else
-            echo "❌ fswatch not found. Install it with: brew install fswatch"
-            echo "   Or use 'markdown' or 'json' mode instead."
-            exit 1
-        fi
+    "add")
+        echo "📝 Adding new post..."
+        go run add-post.go
+        echo "✅ Post added! Run './generate.sh generate' to update the website."
         ;;
     "help"|"-h"|"--help")
-        echo "Usage: ./generate.sh [markdown|json|watch]"
+        echo "Usage: ./generate.sh [generate|add|help]"
         echo ""
         echo "Commands:"
-        echo "  markdown  - Generate from markdown files in md/ directory (default)"
-        echo "  json      - Generate from posts.json file"
-        echo "  watch     - Watch md/ directory for changes and auto-regenerate"
+        echo "  generate  - Generate website from posts.json (default)"
+        echo "  add       - Add a new post interactively"
         echo "  help      - Show this help message"
         echo ""
         echo "Examples:"
-        echo "  ./generate.sh           # Generate from markdown"
-        echo "  ./generate.sh json      # Generate from JSON"
-        echo "  ./generate.sh watch     # Watch for changes"
+        echo "  ./generate.sh           # Generate website"
+        echo "  ./generate.sh generate  # Generate website"
+        echo "  ./generate.sh add       # Add new post"
+        echo ""
+        echo "Workflow:"
+        echo "  1. ./generate.sh add    # Add new post"
+        echo "  2. ./generate.sh        # Generate website"
+        echo "  3. Repeat as needed"
         ;;
     *)
         echo "❌ Unknown command: $1"
