@@ -3,7 +3,7 @@
 - Description:
     - Compact 4v4 compstomp map with separate lanes.
 
-- Topic: Ruin's En
+- Topic: Maps
 
 - Date: 25 Jul, 2024
 

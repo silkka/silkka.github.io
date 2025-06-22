@@ -3,7 +3,7 @@
 - Description:
     - Version 2 of the classic Stockart Cay map with improved main lane.
 
-- Topic: Stockart Cay v2
+- Topic: Maps
 
 - Date: 25 Aug, 2024
 

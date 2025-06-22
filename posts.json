@@ -2,7 +2,7 @@
   {
     "title": "Stockart Cay v2",
     "description": "Version 2 of the classic Stockart Cay map with improved main lane.",
-    "topic": "Stockart Cay v2",
+    "topic": "Maps",
     "date": "25 Aug, 2024",
     "image_url": "https://images.steamusercontent.com/ugc/2402194226083593556/B6C83728FDAB81A7A008C020D9DE9F9AB7C7E1A6/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
     "external_links": [
@@ -16,10 +16,12 @@
   {
     "title": "Ironfront Pass",
     "description": "Single lane map for fun 4v4 AI matches",
-    "topic": "Ironfront Pass",
+    "topic": "Maps",
     "date": "30 Jul, 2024",
     "image_url": "https://images.steamusercontent.com/ugc/2490011881774610263/62B25792CA76EA009B5E0D429292F8A9AFC32135/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3299378208"
+    ],
     "slug": "ironfront-pass",
     "category": "maps",
     "content": ""
@@ -27,7 +29,7 @@
   {
     "title": "Ruin's End",
     "description": "Compact 4v4 compstomp map with separate lanes.",
-    "topic": "Ruin's En",
+    "topic": "Maps",
     "date": "25 Jul, 2024",
     "image_url": "https://images.steamusercontent.com/ugc/2490011881751305073/A7E35904596414A2624D5FAF2E9CD50CC25B9689/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
     "external_links": [
@@ -41,10 +43,12 @@
   {
     "title": "Doom Trench (COH3)",
     "description": "Remake of the my COH 1 map for Company of Heroes 3.",
-    "topic": "Doom Trench",
+    "topic": "Maps",
     "date": "21 Jul, 2024",
     "image_url": "https://images.steamusercontent.com/ugc/2494514847469494025/B2884F2C027F31B4F9CC8DBFDB731874B36B1470/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3296646483"
+    ],
     "slug": "doom-trench-coh3",
     "category": "maps",
     "content": ""
@@ -52,32 +56,38 @@
   {
     "title": "Stockart Cay (COH3)",
     "description": "Remake of the my COH 1 map for Company of Heroes 3.",
-    "topic": "Stockart Cay",
+    "topic": "Maps",
     "date": "5 Mar, 2023",
     "image_url": "https://images.steamusercontent.com/ugc/2026094830100614009/50DCCE681215D441A846DFB7B28E1F1C106E813E/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3296646483"
+    ],
     "slug": "stockart-cay-coh3",
     "category": "maps",
     "content": ""
   },
   {
     "title": "Death Valley",
-    "description": "Simple 4 lane map with focus on the centre of the map",
-    "topic": "Death Valley",
+    "description": "Simple 4 lane map with focus on the centre of the map, providing strategic gameplay opportunities.",
+    "topic": "Maps",
     "date": "30 Dec, 2021",
     "image_url": "https://images.steamusercontent.com/ugc/1868430228821029553/B405EAD8C28CA1367E63F7E8CA3E9BD228D86B40/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3296646483"
+    ],
     "slug": "death-valley",
     "category": "maps",
     "content": ""
   },
   {
     "title": "We Built This City",
-    "description": "Dense urban warfare, perfect for an intense comp stomp game",
-    "topic": "We Built This City",
+    "description": "Dense urban warfare, perfect for an intense comp stomp game featuring tactical urban combat scenarios.",
+    "topic": "Maps",
     "date": "29 Mar, 2021",
     "image_url": "https://images.steamusercontent.com/ugc/1734423148332693574/6F868AB5221FE742F2B68F04EF3A56653FFC1A3D/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3296646483"
+    ],
     "slug": "we-built-this-city",
     "category": "maps",
     "content": ""
@@ -85,32 +95,38 @@
   {
     "title": "Stockart Cay",
     "description": "A classic compstomp map starting off with a fight over the island. Whoever claims the island has a significant edge on the main land fight.",
-    "topic": "Stockart Cay",
+    "topic": "Maps",
     "date": "25 Mar, 2021",
     "image_url": "https://images.steamusercontent.com/ugc/1734422824539651274/D6DC7A9B7C85D735DF6EBCC0BAC6944EA17F4571/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3296646483"
+    ],
     "slug": "stockart-cay",
     "category": "maps",
     "content": ""
   },
   {
     "title": "Doom Trench",
-    "description": "1 lane map for good old fashioned comp stomp",
-    "topic": "Doom Trench",
+    "description": "1 lane map for good old fashioned comp stomp, featuring intense battles in this focused single-lane map designed for classic competitive gameplay.",
+    "topic": "Maps",
     "date": "26 Feb, 2021",
     "image_url": "https://images.steamusercontent.com/ugc/1769323239045796108/FAA1D98A95C7E85E84D73D2BBBCCEF70C61DE6A0/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3296646483"
+    ],
     "slug": "doom-trench",
     "category": "maps",
     "content": ""
   },
   {
     "title": "Bridge Not Taken UE",
-    "description": "High resource bridge map with the unfair enemies twist.",
-    "topic": "",
+    "description": "High resource bridge map with the unfair enemies twist for Company of Heroes, featuring strategic bridge positions and resource-rich environments.",
+    "topic": "Maps",
     "date": "Feb 24, 2021",
     "image_url": "https://images.steamusercontent.com/ugc/1769323061278963784/A55935F9A38FAB55EB974AEE29D1BAC7253C445C/?imw=5000\u0026imh=5000\u0026ima=fit\u0026impolicy=Letterbox\u0026imcolor=%23000000\u0026letterbox=false",
-    "external_links": null,
+    "external_links": [
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=2406496800"
+    ],
     "slug": "bridge-not-taken-ue",
     "category": "maps",
     "content": ""
