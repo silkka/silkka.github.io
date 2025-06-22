@@ -33,6 +33,13 @@ type WebsiteData struct {
 	AllPosts     []Post `json:"all_posts"`
 }
 
+// CategoryData holds data for category index pages
+type CategoryData struct {
+	CategoryName string `json:"category_name"`
+	CategorySlug string `json:"category_slug"`
+	Posts        []Post `json:"posts"`
+}
+
 // LinkInfo holds information about a link for display
 type LinkInfo struct {
 	URL  string
@@ -185,6 +192,41 @@ const postsIndexTemplate = `<!DOCTYPE html>
 
 </html>`
 
+const categoryIndexTemplate = `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.CategoryName}} - Silkka's Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/components/theme.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body>
+    <div hx-get="/components/navbar.html" hx-trigger="load" hx-swap="outerHTML"></div>
+
+    <main class="featured-post">
+        <h1>{{.CategoryName}}</h1>
+        <div class="posts-grid">
+            {{range .Posts}}
+            <article class="post-card">
+                <div class="post-image">
+                    <img src="{{.ImageURL}}" alt="{{.Title}} Screenshot">
+                    <span class="date">{{.Date}}</span>
+                </div>
+                <h2>{{.Title}}</h2>
+                <p>{{.Description}}</p>
+                <a href="{{.Slug}}.html" class="read-more" aria-label="Read more about {{.Title}}">READ MORE</a>
+            </article>
+            {{end}}
+        </div>
+    </main>
+</body>
+
+</html>`
+
 // generateSlug creates a URL-friendly slug from a title
 func generateSlug(title string) string {
 	slug := strings.ToLower(title)
@@ -207,6 +249,20 @@ func determineCategory(topic string) string {
 		return "posts"
 	default:
 		return "maps" // default category
+	}
+}
+
+// getCategoryDisplayName returns the display name for a category
+func getCategoryDisplayName(category string) string {
+	switch category {
+	case "maps":
+		return "Maps"
+	case "games":
+		return "Games"
+	case "posts":
+		return "Posts"
+	default:
+		return "Posts"
 	}
 }
 
@@ -266,6 +322,30 @@ func generatePostHTML(post Post, outputDir string) error {
 	defer file.Close()
 
 	return tmpl.Execute(file, post)
+}
+
+// generateCategoryIndexHTML generates the index.html for a category
+func generateCategoryIndexHTML(categoryData CategoryData, outputDir string) error {
+	tmpl, err := template.New("categoryIndex").Parse(categoryIndexTemplate)
+	if err != nil {
+		return err
+	}
+
+	// Create category directory if it doesn't exist
+	categoryDir := filepath.Join(outputDir, categoryData.CategorySlug)
+	if err := os.MkdirAll(categoryDir, 0755); err != nil {
+		return err
+	}
+
+	// Generate index.html file in the category directory
+	outputFile := filepath.Join(categoryDir, "index.html")
+	file, err := os.Create(outputFile)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	return tmpl.Execute(file, categoryData)
 }
 
 // generateIndexHTML generates the main index.html
@@ -334,6 +414,17 @@ func updateWebsiteData(posts []Post) WebsiteData {
 	}
 }
 
+// groupPostsByCategory groups posts by their category
+func groupPostsByCategory(posts []Post) map[string][]Post {
+	categories := make(map[string][]Post)
+	
+	for _, post := range posts {
+		categories[post.Category] = append(categories[post.Category], post)
+	}
+	
+	return categories
+}
+
 // savePostsAsJSON saves all posts as JSON
 func savePostsAsJSON(posts []Post, outputFile string) error {
 	data, err := json.MarshalIndent(posts, "", "  ")
@@ -384,6 +475,32 @@ func main() {
 		}
 	}
 
+	// Generate category index pages
+	categories := groupPostsByCategory(posts)
+	for category, categoryPosts := range categories {
+		// Sort posts in category by date (newest first)
+		sort.Slice(categoryPosts, func(i, j int) bool {
+			dateI, errI := parseDate(categoryPosts[i].Date)
+			dateJ, errJ := parseDate(categoryPosts[j].Date)
+			
+			if errI != nil || errJ != nil {
+				return false
+			}
+			
+			return dateI.After(dateJ)
+		})
+		
+		categoryData := CategoryData{
+			CategoryName: getCategoryDisplayName(category),
+			CategorySlug: category,
+			Posts:        categoryPosts,
+		}
+		
+		if err := generateCategoryIndexHTML(categoryData, outputDir); err != nil {
+			log.Printf("Error generating category index for %s: %v", category, err)
+		}
+	}
+
 	// Generate main index.html
 	if err := generateIndexHTML(websiteData, outputDir); err != nil {
 		log.Fatal("Error generating index.html:", err)
@@ -398,4 +515,8 @@ func main() {
 	fmt.Printf("- Featured post: %s\n", websiteData.FeaturedPost.Title)
 	fmt.Printf("- Recent posts: %d\n", len(websiteData.RecentPosts))
 	fmt.Printf("- Total posts: %d\n", len(websiteData.AllPosts))
+	fmt.Printf("- Categories: %d\n", len(categories))
+	for category, posts := range categories {
+		fmt.Printf("  - %s: %d posts\n", getCategoryDisplayName(category), len(posts))
+	}
 } 
