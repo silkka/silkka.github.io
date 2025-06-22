@@ -58,6 +58,10 @@ func getLinkText(url string) string {
 		return "View on GitHub"
 	}
 	
+	if strings.Contains(url, "/games/") {
+		return "Play Game"
+	}
+
 	return "View Resource"
 }
 

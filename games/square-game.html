@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Game - Silkka's Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/components/theme.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body>
+    <div hx-get="/components/navbar.html" hx-trigger="load" hx-swap="outerHTML"></div>
+
+    <div class="blog-page">
+        <div class="blog-post">
+            <h1>Square Game</h1>
+            <date class="post-content">Jun 22, 2025</date>
+
+            <img src="/images/squareGame.png" alt="Square Game Screenshot" class="featured-image">
+            <div class="post-content">
+                <h2>Description</h2>
+                <p>Testing Raylib and Odin. Using template https://github.com/karl-zylinski/odin-raylib-hot-reload-game-template</p>
+
+                
+                
+                <div class="cta-section">
+                    <h2>External Links</h2>
+                    
+                    <a href="https://github.com/silkka/squareGame" class="cta-button" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    
+                    <a href="/games/square/" class="cta-button" target="_blank" rel="noopener noreferrer">Play Game</a>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

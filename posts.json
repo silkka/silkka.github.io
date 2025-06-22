@@ -1,5 +1,19 @@
 [
   {
+    "title": "Square Game",
+    "description": "Testing Raylib and Odin. Using template https://github.com/karl-zylinski/odin-raylib-hot-reload-game-template",
+    "topic": "Games",
+    "date": "Jun 22, 2025",
+    "image_url": "/images/squareGame.png",
+    "external_links": [
+      "https://github.com/silkka/squareGame",
+      "/games/square/"
+    ],
+    "slug": "square-game",
+    "category": "games",
+    "content": ""
+  },
+  {
     "title": "Stockart Cay v2",
     "description": "Version 2 of the classic Stockart Cay map with improved main lane.",
     "topic": "Maps",
